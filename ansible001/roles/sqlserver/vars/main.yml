@@ -1,0 +1,7 @@
+---
+
+paquetes:
+ - mysql-server
+ - mysql-client
+ - python-mysqldb
+# vars file for sqlserver

@@ -1,0 +1,7 @@
+---
+- name: Instalar servidor de base de datos no relacional(redis)
+  hosts: nosql
+  become: yes
+  remote_user: root
+  roles:
+   - nosqlserver

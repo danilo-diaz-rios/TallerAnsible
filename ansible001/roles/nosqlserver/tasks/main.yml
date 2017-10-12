@@ -1,0 +1,17 @@
+---
+- name: Instalar servidor redis
+  apt: name=redis-server state=latest update_cache=yes
+
+- name: Iniciar redis
+  service: name=redis-server state=started
+
+- name: Habilitar servidor redis al reboot
+  service: name=redis-server enabled=yes
+
+- name: Configuracion de redis
+  template: src=redis.configuracion.j2 dest=/etc/redis/redis.conf owner=root group=root mode=0644
+  sudo: true
+  notify: Reiniciar redis
+
+
+# tasks file for nosqlserver

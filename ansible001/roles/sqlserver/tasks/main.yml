@@ -1,0 +1,24 @@
+---
+- name: Actualizar paquetes
+  apt: autoremove=yes update_cache=yes
+
+- name: Establecer contraseña usuario root
+  debconf: name='mysql-server' question='mysql-server/root_password' value='2008' vtype='password'
+
+- name: Confirmar contraseña usuario root
+  debconf: name='mysql-server' question='mysql-server/root_password_again' value='2008' vtype='password'
+
+- name: Instalar MySQL
+  apt: package={{ item }} state=installed force=yes update_cache=yes cache_valid_time=3600
+  with_items:
+     - "{{ paquetes }}"
+    
+
+- name: Actualizar paquetes
+  apt: autoremove=yes update_cache=yes
+
+- name: Iniciar servicio mysql
+  service:
+    name: mysql
+    state: started
+# tasks file for sqlserver

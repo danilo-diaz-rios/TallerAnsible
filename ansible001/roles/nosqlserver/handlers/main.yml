@@ -1,0 +1,5 @@
+---
+- name: Reiniciar redis
+  service: name=redis-server state=restarted enabled=yes
+  sudo: true
+# handlers file for nosqlserver
